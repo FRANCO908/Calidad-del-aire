@@ -18,11 +18,9 @@ st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
 st.sidebar.divider()
 
 # Selección de Año
-vars_year = ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007',
-             '2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
-             '2020','2021','2022','2023']
-default_year = vars_year.index('2020')
-year_selected = st.sidebar.selectbox('Elección del Año de monitoreo:', vars_year, index = default_year)
+vars_year = list(range(1996, 2024))  # Genera lista de años como enteros
+default_year = vars_year.index(2020)  # Encuentra la posición del año 2020
+year_selected = st.sidebar.selectbox("Elección del Año de monitoreo:", vars_year, index=default_year)
 st.sidebar.divider()
 
 # Selección de Estación
