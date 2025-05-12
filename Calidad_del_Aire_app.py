@@ -58,7 +58,7 @@ df_final['FECHA'] = pd.to_datetime(df_final['FECHA'], errors='coerce')
 st.markdown(":violet[El **DataFrame** es el siguiente:]")
 
 #----- Renderizado del DataFrame ----------------------------------
-st.dataframe(df_final.head())
+st.dataframe(df_final.head(5000))
 st.divider()
 
 # Filtrar datos según selección
@@ -67,8 +67,8 @@ df_filtrado = df_final[
     (df_final['FECHA'].dt.year == int(year_selected))
 ].copy()
 
-st.dataframe(df_filtrado)
-st.divider()
+# st.dataframe(df_filtrado)
+# st.divider()
 
 # Calcular el promedio mensual
 df_filtrado['AÑO-MES'] = df_filtrado['FECHA'].dt.to_period("M")
