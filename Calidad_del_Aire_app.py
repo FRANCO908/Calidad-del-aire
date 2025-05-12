@@ -8,7 +8,7 @@ Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
 
 #----- Renderizado del Texto --------------------------------------
 st.title("Histórico de monitoreo de contaminantes atmosféricos en la ZMG  (1996 a 2023)")
-st.subheader(":blue[La presente aplicación interactiva permite explorar bases de datos sobre "
+st.markdown(":blue[La presente aplicación interactiva permite explorar bases de datos sobre "
                     "parámetros de contaminación atmosférica en la **Zona Metropolitana de Guadalajara** (Jalisco, México), abarcando "
                     "el periodo de 1996 a 2023. Mediante el uso de la **librería Pandas**, los registros históricos "
                     "fueron homogeneizados y unificados, lo que facilita su procesamiento y análisis eficiente. "
