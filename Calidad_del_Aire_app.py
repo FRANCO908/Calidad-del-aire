@@ -58,7 +58,7 @@ df_final['FECHA'] = pd.to_datetime(df_final['FECHA'], errors='coerce')
 st.markdown(":violet[El **DataFrame** es el siguiente:]")
 
 #----- Renderizado del DataFrame ----------------------------------
-st.dataframe(df_final)
+st.dataframe(df_final.head())
 st.divider()
 
 # Filtrar datos según selección
