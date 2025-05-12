@@ -59,8 +59,6 @@ st.markdown(":violet[El **DataFrame** es el siguiente:]")
 
 #----- Renderizado del DataFrame ----------------------------------
 st.dataframe(df_final.head())
-st.dataframe(df_final[df_final['CLAVE_EST'] == est_selected])
-st.dataframe(df_final[df_final['FECHA'] == year_selected])
 st.divider()
 
 # Filtrar datos según selección
@@ -70,6 +68,7 @@ df_filtrado = df_final[
 ].copy()
 
 st.dataframe(df_filtrado.head())
+st.divider()
 
 # Calcular el promedio mensual
 df_filtrado['AÑO-MES'] = df_filtrado['FECHA'].dt.to_period("M")
