@@ -67,7 +67,7 @@ df_filtrado = df_final[
     (df_final['FECHA'].dt.year == int(year_selected))
 ].copy()
 
-st.dataframe(df_filtrado.head())
+st.dataframe(df_filtrado)
 st.divider()
 
 # Calcular el promedio mensual
