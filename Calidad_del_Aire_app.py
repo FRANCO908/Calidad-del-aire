@@ -59,6 +59,7 @@ st.markdown(":violet[El **DataFrame** es el siguiente:]")
 
 #----- Renderizado del DataFrame ----------------------------------
 st.dataframe(df_final.head())
+print(df_final[df_final['CLAVE_EST'] == est_selected]['FECHA'].dt.year.unique())
 st.divider()
 
 # Filtrar datos según selección
