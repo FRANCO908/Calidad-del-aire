@@ -19,7 +19,7 @@ st.sidebar.divider()
 
 # Selección de Año
 vars_year = list(range(1996, 2024))  
-default_year = vars_year.index('2020')
+default_year = vars_year.index(2020)
 year_selected = st.sidebar.selectbox('Elección del Año de monitoreo:', vars_year, index = default_year)
 st.sidebar.divider()
 
