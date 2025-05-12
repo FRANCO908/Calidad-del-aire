@@ -75,7 +75,7 @@ df_promedio_mensual = df_filtrado.groupby('AÑO-MES')[para_selected].mean().rese
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(df_promedio_mensual['AÑO-MES'].astype(str), df_promedio_mensual[para_selected], marker='o', linestyle='-', color='b')
 
-st.dataframe(ddf_filtrado.head())
+st.dataframe(df_filtrado.head())
 st.divider()
 
 # Personalizar gráfico
