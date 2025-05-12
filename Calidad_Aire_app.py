@@ -65,7 +65,7 @@ st.divider()
 df_filtrado = df_final[
     (df_final['CLAVE_EST'] == est_selected) & 
     (df_final['FECHA'].dt.year == year_selected)
-]
+].copy()
 
 # Calcular el promedio mensual
 df_filtrado['AÑO-MES'] = df_filtrado['FECHA'].dt.to_period("M")
