@@ -33,7 +33,7 @@ st.sidebar.divider()
 vars_para = ['O3', 'NO2', 'NO','NOX', 'CO', 'SO2', 'PM10', 'PM2.5', 'TMP', 'TMPI', 'RH', 'PP', 
              'WS', 'WD', 'RS', 'PBA','UV', 'UVI']
 default_para = vars_year.index('2020')
-para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_yaer, index = default_para)
+para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_year, index = default_para)
 
 #------------------------------------------------------------------
 #----- Configuración de Texto y Elementos del Panel Central -------
