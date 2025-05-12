@@ -6,6 +6,18 @@ from skimage import io
 # Renderizar imagen y título en la barra lateral
 Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
 
+#----- Renderizado del Texto --------------------------------------
+st.title("Histórico de monitoreo de contaminantes atmosféricos en la ZMG  (1996 a 2023)")
+st.subheader(":blue[La presente aplicación interactiva permite explorar bases de datos sobre
+parámetros de contaminación atmosférica en la **Zona Metropolitana de Guadalajara** (Jalisco, México), abarcando
+el periodo de 1996 a 2023. Mediante el uso de la **librería Pandas**, los registros históricos
+fueron homogeneizados y unificados, lo que facilita su procesamiento y análisis eficiente.
+Es importante señalar que los datos no han sido verificados, por lo que deben interpretarse
+con precaución. Sin embargo, el objetivo principal es optimizar el acceso y manejo de información clave,
+contribuyendo a la toma de decisiones fundamentadas y al diseño de políticas de calidad del aire
+basadas en datos organizados y estructurados.
+]")
+
 #------------------------------------------------------------------
 #----- Configuración de los Elementos del DashBoard ---------------
 #------------------------------------------------------------------
@@ -55,7 +67,7 @@ df_final = pd.concat([df1, df2, df3, df4, df5, df6, df7, df8], ignore_index=True
 # Convertir "FECHA" a datetime si es necesario
 df_final['FECHA'] = pd.to_datetime(df_final['FECHA'], errors='coerce')
 
-st.markdown(":violet[El **DataFrame** es el siguiente:]")
+st.markdown(":blue[El **DataFrame** es el siguiente:]")
 
 #----- Renderizado del DataFrame ----------------------------------
 st.dataframe(df_final.head(5000))
@@ -84,6 +96,9 @@ ax.set_xlabel('Fecha (Año-Mes)')
 ax.set_ylabel(f'Promedio de {para_selected}')
 ax.grid()
 plt.xticks(rotation=45)
+
+st.markdown(":blue[Utilice el siguiente gráfico modificable para explorar los datos fácilmente, 
+seleccionando estación de monitoreo, año y contaminante o parámetro de interés desde el Menú de configuración.]")
 
 # Mostrar el gráfico en Streamlit
 st.pyplot(fig)
