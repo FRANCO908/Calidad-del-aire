@@ -5,8 +5,6 @@ from skimage import io
 
 # Renderizar imagen y título en la barra lateral
 Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
-st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
-st.sidebar.divider()
 
 #------------------------------------------------------------------
 #----- Configuración de los Elementos del DashBoard ---------------
