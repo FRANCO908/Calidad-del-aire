@@ -64,7 +64,7 @@ st.divider()
 # Filtrar datos según selección
 df_filtrado = df_final[
     (df_final['CLAVE_EST'] == est_selected) & 
-    (df_final['FECHA'].dt.year.isin(year_selected))
+    (df_final['FECHA'].dt.year == year_selected)
 ]
 
 # Calcular el promedio mensual
@@ -76,6 +76,7 @@ fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(df_promedio_mensual['AÑO-MES'].astype(str), df_promedio_mensual[para_selected], marker='o', linestyle='-', color='b')
 
 st.dataframe(df_filtrado.head())
+st.dataframe(df_filtrado[FECHA].head())
 st.divider()
 
 # Personalizar gráfico
