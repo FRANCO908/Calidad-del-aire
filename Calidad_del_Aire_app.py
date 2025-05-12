@@ -64,7 +64,7 @@ st.divider()
 # Filtrar datos según selección
 df_filtrado = df_final[
     (df_final['CLAVE_EST'] == est_selected) & 
-    (df_final['FECHA'].dt.year.isin == year_selected)
+    (df_final['FECHA'].dt.year.isin(year_selected))
 ]
 
 # Calcular el promedio mensual
