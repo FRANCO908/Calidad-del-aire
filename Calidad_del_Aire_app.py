@@ -67,7 +67,9 @@ st.divider()
 df_filtrado = df_final[
     (df_final['CLAVE_EST'] == est_selected) & 
     (df_final['FECHA'].dt.year == year_selected)
-]
+].copy()
+
+st.dataframe(df_filtrado.head())
 
 # Calcular el promedio mensual
 df_filtrado['AÑO-MES'] = df_filtrado['FECHA'].dt.to_period("M")
@@ -77,7 +79,6 @@ df_promedio_mensual = df_filtrado.groupby('AÑO-MES')[para_selected].mean().rese
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(df_promedio_mensual['AÑO-MES'].astype(str), df_promedio_mensual[para_selected], marker='o', linestyle='-', color='b')
 
-st.dataframe(df_filtrado.head())
 st.dataframe(df_filtrado['CLAVE_EST'].head())
 st.dataframe(df_filtrado['FECHA'].head())
 st.divider()
