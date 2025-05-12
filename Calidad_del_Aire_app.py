@@ -76,6 +76,7 @@ fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(df_promedio_mensual['AÑO-MES'].astype(str), df_promedio_mensual[para_selected], marker='o', linestyle='-', color='b')
 
 st.dataframe(df_filtrado.head())
+st.dataframe(df_filtrado['CLAVE_EST'].head())
 st.dataframe(df_filtrado['FECHA'].head())
 st.divider()
 
