@@ -4,6 +4,8 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 from skimage import io
 import contextily as ctx
+import folium
+from streamlit_folium import folium_static
 from shapely.geometry import Point
 
 # Renderizar imagen y título en la barra lateral
@@ -66,28 +68,34 @@ gdf = gdf.to_crs(epsg=3857)
 gdf["radio_km"] = gdf["Representatividad (km)"] * 1000  # Convertir a metros
 gdf["area_influencia"] = gdf.geometry.buffer(gdf["radio_km"])  # Crear el círculo
 
-# Graficar el mapa
-fig, ax = plt.subplots(figsize=(10, 6))
+# Crear mapa en Folium
+m = folium.Map(location=[20.6736, -103.344], zoom_start=11)
 
-# Dibujar áreas de influencia
-gdf.set_geometry("area_influencia").plot(ax=ax, color="blue", alpha=0.3)
-
-# Dibujar las estaciones
-gdf.set_geometry("geometry").plot(ax=ax, color="red", markersize=50)
-
-# Agregar mapa base
-ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)
-
-# Agregar etiquetas
+# Agregar marcadores de estaciones y área de influencia
 for _, row in gdf.iterrows():
-    ax.text(row.geometry.x, row.geometry.y, row["CLAVE_EST"], fontsize=8, ha="center", color="black")
+    # Crear marcador con información de estación
+    folium.Marker(
+        location=[row["Latitud"], row["Longitud"]],
+        popup=f"<b>{row['Estación']}</b><br>Clave: {row['CLAVE_EST']}<br>Instalada en: {row['Año de instalación']}<br>Población cubierta: {row['Población cubierta']}",
+        tooltip=row["Estación"],
+        icon=folium.Icon(color="red", icon="cloud")
+    ).add_to(m)
+    
+    # Dibujar círculo de cobertura
+    folium.Circle(
+        location=[row["Latitud"], row["Longitud"]],
+        radius=row["Representatividad (km)"] * 1000,  # Convertir km a metros
+        color="blue",
+        fill=True,
+        fill_opacity=0.3
+    ).add_to(m)
 
-ax.set_title("Cobertura de Estaciones de Monitoreo en la ZMG", fontsize=14)
 st.markdown(":blue[Utilice el siguiente gráfico modificable para explorar los datos fácilmente, " 
                   "seleccionando estación de monitoreo, año y contaminante o parámetro de interés desde el Menú de configuración.]")
 
-# Mostrar el gráfico (mapa) en Streamlit
-st.pyplot(fig)
+# Mostrar mapa en Streamlit
+st.subheader("Mapa de cobertura de estaciones de monitoreo en la ZMG")
+folium_static(m)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
