@@ -4,7 +4,7 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 from skimage import io
 import folium
-from streamlit_folium import folium_static
+from streamlit_folium import st_folium
 from shapely.geometry import Point
 
 # Renderizar imagen y título en la barra lateral
@@ -86,16 +86,16 @@ for _, row in gdf.iterrows():
 
 # Marcadores con popup de información
 for _, row in gdf.iterrows():
-  popup_text = (
-    f"<b>Estación:</b> {row['Estación']}<br>"
-    f"<b>Altitud:</b> {row['Altitud (msnm)']} msnm<br>"
-    f"<b>Año de instalación:</b> {row['Año de instalación']}"
-        )
-        folium.Marker(
-          location=[row["Latitud"], row["Longitud"]],
-          popup=popup_text,
-          icon=folium.Icon(color="green", icon="info-sign")
-        ).add_to(m)
+    popup_text = (
+        f"<b>Estación:</b> {row['Estación']}<br>"
+        f"<b>Altitud:</b> {row['Altitud (msnm)']} msnm<br>"
+        f"<b>Año de instalación:</b> {row['Año de instalación']}"
+    )
+    folium.Marker(
+        location=[row["Latitud"], row["Longitud"]],
+        popup=popup_text,
+        icon=folium.Icon(color="green", icon="info-sign")
+    ).add_to(m)
 
 st.markdown(":blue[Mapa de Estaciones de Monitoreo:]")
 
