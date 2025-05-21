@@ -1,7 +1,10 @@
 import streamlit as st
 import pandas as pd
+import geopandas as gpd
 import matplotlib.pyplot as plt
 from skimage import io
+import contextily as ctx
+from shapely.geometry import Point
 
 # Renderizar imagen y título en la barra lateral
 Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
@@ -47,8 +50,44 @@ default_para = vars_para.index('PM10')
 para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_para, index = default_para)
 
 #------------------------------------------------------------------
-#----- Configuración de Texto y Elementos del Panel Central -------
+#----- Configuración de elementos del Panel Central ---------------
 #------------------------------------------------------------------
+
+# Cargar el CSV con las estaciones
+df = pd.read_csv("./Datos/Estaciones.csv")
+
+# Convertir a GeoDataFrame
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["Longitud"], df["Latitud"]))
+
+# Transformar a EPSG 3857 para usar mapas base
+gdf = gdf.to_crs(epsg=3857)
+
+# Crear polígonos circulares representando el radio de influencia
+gdf["radio_km"] = gdf["Representatividad (km)"] * 1000  # Convertir a metros
+gdf["area_influencia"] = gdf.geometry.buffer(gdf["radio_km"])  # Crear el círculo
+
+# Graficar el mapa
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Dibujar áreas de influencia
+gdf.set_geometry("area_influencia").plot(ax=ax, color="blue", alpha=0.3)
+
+# Dibujar las estaciones
+gdf.set_geometry("geometry").plot(ax=ax, color="red", markersize=50)
+
+# Agregar mapa base
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)
+
+# Agregar etiquetas
+for _, row in gdf.iterrows():
+    ax.text(row.geometry.x, row.geometry.y, row["CLAVE_EST"], fontsize=8, ha="center", color="black")
+
+ax.set_title("Cobertura de Estaciones de Monitoreo en la ZMG", fontsize=14)
+st.markdown(":blue[Utilice el siguiente gráfico modificable para explorar los datos fácilmente, " 
+                  "seleccionando estación de monitoreo, año y contaminante o parámetro de interés desde el Menú de configuración.]")
+
+# Mostrar el gráfico (mapa) en Streamlit
+st.pyplot(fig)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
