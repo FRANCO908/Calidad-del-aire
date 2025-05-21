@@ -88,6 +88,7 @@ for _, row in gdf.iterrows():
 for _, row in gdf.iterrows():
     popup_text = (
         f"<b>Estación:</b> {row['Estación']}<br>"
+        f"<b>Clave:</b> {row['CLAVE_EST']}<br>"
         f"<b>Altitud:</b> {row['Altitud (msnm)']} msnm<br>"
         f"<b>Año de instalación:</b> {row['Año de instalación']}"
     )
