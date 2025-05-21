@@ -3,7 +3,6 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 from skimage import io
-import contextily as ctx
 import folium
 from streamlit_folium import folium_static
 from shapely.geometry import Point
@@ -56,46 +55,52 @@ para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', v
 #------------------------------------------------------------------
 
 # Cargar el CSV con las estaciones
-df = pd.read_csv("./Datos/Estaciones.csv")
+data = pd.read_csv("./Datos/Estaciones.csv")
 
-# Convertir a GeoDataFrame
-gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["Longitud"], df["Latitud"]))
+# Crear GeoDataFrame con puntos
+gdf = gpd.GeoDataFrame(
+      data,
+      geometry=gpd.points_from_xy(data["Longitud"], data["Latitud"]),
+      crs="EPSG:4326"
+      )
 
-# Transformar a EPSG 3857 para usar mapas base
-gdf = gdf.to_crs(epsg=3857)
+# Convertir a proyección métrica para calcular buffer en metros
+gdf_meters = gdf.to_crs(epsg=6372)
+gdf["buffer"] = gdf_meters.buffer(gdf["Representatividad (km)"] * 1000).to_crs(epsg=4326)
 
-# Crear polígonos circulares representando el radio de influencia
-gdf["radio_km"] = gdf["Representatividad (km)"] * 1000  # Convertir a metros
-gdf["area_influencia"] = gdf.geometry.buffer(gdf["radio_km"])  # Crear el círculo
+# Crear mapa base
+center = [gdf["Latitud"].mean(), gdf["Longitud"].mean()]
+m = folium.Map(location=center, zoom_start=11)
 
-# Crear mapa en Folium
-m = folium.Map(location=[20.6736, -103.344], zoom_start=11)
-
-# Agregar marcadores de estaciones y área de influencia
+# Dibujar círculos de representatividad
 for _, row in gdf.iterrows():
-    # Crear marcador con información de estación
-    folium.Marker(
-        location=[row["Latitud"], row["Longitud"]],
-        popup=f"<b>{row['Estación']}</b><br>Clave: {row['CLAVE_EST']}<br>Instalada en: {row['Año de instalación']}<br>Población cubierta: {row['Población cubierta']}",
-        tooltip=row["Estación"],
-        icon=folium.Icon(color="red", icon="cloud")
-    ).add_to(m)
-    
-    # Dibujar círculo de cobertura
-    folium.Circle(
-        location=[row["Latitud"], row["Longitud"]],
-        radius=row["Representatividad (km)"] * 1000,  # Convertir km a metros
-        color="blue",
-        fill=True,
-        fill_opacity=0.3
-    ).add_to(m)
+  folium.GeoJson(
+    row["buffer"],
+    style_function=lambda x: {
+      "fillColor": "blue",
+      "color": "blue",
+                "weight": 1,
+                "fillOpacity": 0.1,
+                            }
+                            ).add_to(m)
 
-st.markdown(":blue[Utilice el siguiente gráfico modificable para explorar los datos fácilmente, " 
-                  "seleccionando estación de monitoreo, año y contaminante o parámetro de interés desde el Menú de configuración.]")
+# Marcadores con popup de información
+for _, row in gdf.iterrows():
+  popup_text = (
+    f"<b>Estación:</b> {row['Estación']}<br>"
+    f"<b>Altitud:</b> {row['Altitud (msnm)']} msnm<br>"
+    f"<b>Año de instalación:</b> {row['Año de instalación']}"
+        )
+        folium.Marker(
+          location=[row["Latitud"], row["Longitud"]],
+          popup=popup_text,
+          icon=folium.Icon(color="green", icon="info-sign")
+        ).add_to(m)
+
+st.markdown(":blue[Mapa de Estaciones de Monitoreo:]")
 
 # Mostrar mapa en Streamlit
-st.subheader("Mapa de cobertura de estaciones de monitoreo en la ZMG")
-folium_static(m)
+st_data = st_folium(m, width=800, height=600)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
