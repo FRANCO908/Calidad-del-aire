@@ -5,5 +5,4 @@ matplotlib
 scikit-image
 folium
 streamlit-folium
-contextily
 shapely
