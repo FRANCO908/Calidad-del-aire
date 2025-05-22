@@ -45,7 +45,7 @@ if tab1:
     st.sidebar.image(Logo, width = 200)
     st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
 
-    st.markdown(":blue[Sección de inicio:]")
+    st.sidebar.markdown(":blue[Sección de inicio:]")
     
     # Selección de Año
     vars_year = ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007',
@@ -70,7 +70,7 @@ elif tab2:
     # Renderizar imagen y título en la barra lateral
     Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
 
-    st.markdown(":blue[Sección de estaciones:]")
+    st.sidebar.markdown(":blue[Sección de estaciones:]")
     
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
     st.sidebar.image(Logo, width = 200)
