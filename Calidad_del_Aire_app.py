@@ -44,7 +44,8 @@ if tab1:
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
     st.sidebar.image(Logo, width = 200)
     st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
-    st.sidebar.divider()
+
+    st.markdown(":blue[Sección de inicio:]")
     
     # Selección de Año
     vars_year = ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007',
@@ -52,23 +53,24 @@ if tab1:
                  '2020','2021','2022','2023']
     default_year = vars_year.index('2020')
     year_selected = st.sidebar.selectbox('Elección del Año de monitoreo:', vars_year, index = default_year)
-    st.sidebar.divider()
     
     # Selección de Estación
     vars_est = ['AGU','ATM','CEN','LDO','MIR','OBL','PIN','SFE','TLA','VAL']
     default_est = vars_est.index('OBL')
     est_selected = st.sidebar.selectbox('Elección de estación de monitoreo:', vars_est, index = default_est)
-    st.sidebar.divider()
     
     # Selección de Parámetro
     vars_para = ['O3', 'NO2', 'NO','NOX', 'CO', 'SO2', 'PM10', 'PM2.5', 'TMP', 'TMPI', 'RH', 'PP', 
                  'WS', 'WD', 'RS', 'PBA','UV', 'UVI']
     default_para = vars_para.index('PM10')
     para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_para, index = default_para)
+    st.sidebar.divider()
 
 elif tab2:
     # Renderizar imagen y título en la barra lateral
     Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
+
+    st.markdown(":blue[Sección de estaciones:]")
     
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
     st.sidebar.image(Logo, width = 200)
