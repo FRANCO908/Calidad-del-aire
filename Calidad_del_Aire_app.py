@@ -99,8 +99,12 @@ for _, row in gdf.iterrows():
     ).add_to(m)
 
 st.markdown(":blue[Mapa de Estaciones de Monitoreo:]")
+
 # Mostrar mapa en Streamlit
-st_folium(m, width=600, height=400)
+st_folium(m, use_container_width=True, height=600)
+
+# Eliminar espacio extra vertical (si lo hay)
+st.markdown(" ", unsafe_allow_html=True)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
