@@ -7,6 +7,19 @@ import folium
 from streamlit_folium import st_folium
 from shapely.geometry import Point
 
+st.markdown(
+    """
+    <style>
+        .main {
+            max-width: 95%;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Renderizar imagen y título en la barra lateral
 Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
 
