@@ -45,7 +45,7 @@ if tab1:
     st.sidebar.image(Logo, width = 200)
     st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
 
-    st.sidebar.markdown(":blue[# Sección de inicio:]")
+    st.sidebar.markdown(":blue[Sección de inicio:]")
     
     # Selección de Año
     vars_year = ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007',
@@ -69,8 +69,6 @@ if tab1:
 elif tab2:
     # Renderizar imagen y título en la barra lateral
     Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
-
-    st.sidebar.markdown(":blue[# Sección de estaciones:]")
     
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
     st.sidebar.image(Logo, width = 200)
@@ -179,6 +177,7 @@ with tab2:
     
     # Crear mapa base
     center = [gdf["Latitud"].mean(), gdf["Longitud"].mean()]
+    st.sidebar.markdown(":blue[Sección de estaciones:]")
     selected_tile = st.sidebar.selectbox("Tipo de mapa base:", list(map_tiles.keys()))
     m = folium.Map(location=center, zoom_start=11, tiles=map_tiles[selected_tile])
     
