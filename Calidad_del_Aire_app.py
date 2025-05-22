@@ -21,6 +21,8 @@ st.markdown(":blue[La presente aplicación interactiva permite explorar bases de
                     "contribuyendo a la toma de decisiones fundamentadas y al diseño de políticas de calidad del aire "
                     "basadas en datos organizados y estructurados.]")
 
+st.divider()
+
 #------------------------------------------------------------------
 #----- Configuración de los Elementos del DashBoard ---------------
 #------------------------------------------------------------------
@@ -53,6 +55,9 @@ para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', v
 #------------------------------------------------------------------
 #----- Configuración de elementos del Panel Central ---------------
 #------------------------------------------------------------------
+
+#Definición de las columnas
+colum_1, colum_2 = st.columns(2)
 
 # Cargar el CSV con las estaciones
 data = pd.read_csv("./Datos/Estaciones.csv")
@@ -98,10 +103,11 @@ for _, row in gdf.iterrows():
         icon=folium.Icon(color="green", icon="info-sign")
     ).add_to(m)
 
-st.markdown(":blue[Mapa de Estaciones de Monitoreo:]")
+colum_1.subheader('Mapa de Estaciones de Monitoreo:')
 
 # Mostrar mapa en Streamlit
-st_data = st_folium(m, width=800, height=600)
+st_data = st_folium(m, width=600, height=400)
+st.divider()
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
