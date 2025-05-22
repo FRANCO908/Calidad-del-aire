@@ -45,30 +45,31 @@ with tab1:
     
     #----- Configuración de los Elementos del DashBoard ---------------
     
-    #----- Renderizado de la Imagen y el Título en el Dashboard -------
-    st.sidebar.image(Logo, width = 200)
-    st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
-    st.sidebar.divider()
-    
-    # Selección de Año
-    vars_year = ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007',
-                 '2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
-                 '2020','2021','2022','2023']
-    default_year = vars_year.index('2020')
-    year_selected = st.sidebar.selectbox('Elección del Año de monitoreo:', vars_year, index = default_year)
-    st.sidebar.divider()
-    
-    # Selección de Estación
-    vars_est = ['AGU','ATM','CEN','LDO','MIR','OBL','PIN','SFE','TLA','VAL']
-    default_est = vars_est.index('OBL')
-    est_selected = st.sidebar.selectbox('Elección de estación de monitoreo:', vars_est, index = default_est)
-    st.sidebar.divider()
-    
-    # Selección de Parámetro
-    vars_para = ['O3', 'NO2', 'NO','NOX', 'CO', 'SO2', 'PM10', 'PM2.5', 'TMP', 'TMPI', 'RH', 'PP', 
-                 'WS', 'WD', 'RS', 'PBA','UV', 'UVI']
-    default_para = vars_para.index('PM10')
-    para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_para, index = default_para)
+    if tab1:
+        #----- Renderizado de la Imagen y el Título en el Dashboard -------
+        st.sidebar.image(Logo, width = 200)
+        st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
+        st.sidebar.divider()
+        
+        # Selección de Año
+        vars_year = ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007',
+                     '2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019',
+                     '2020','2021','2022','2023']
+        default_year = vars_year.index('2020')
+        year_selected = st.sidebar.selectbox('Elección del Año de monitoreo:', vars_year, index = default_year)
+        st.sidebar.divider()
+        
+        # Selección de Estación
+        vars_est = ['AGU','ATM','CEN','LDO','MIR','OBL','PIN','SFE','TLA','VAL']
+        default_est = vars_est.index('OBL')
+        est_selected = st.sidebar.selectbox('Elección de estación de monitoreo:', vars_est, index = default_est)
+        st.sidebar.divider()
+        
+        # Selección de Parámetro
+        vars_para = ['O3', 'NO2', 'NO','NOX', 'CO', 'SO2', 'PM10', 'PM2.5', 'TMP', 'TMPI', 'RH', 'PP', 
+                     'WS', 'WD', 'RS', 'PBA','UV', 'UVI']
+        default_para = vars_para.index('PM10')
+        para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_para, index = default_para)
     
     #----- Configuración de elementos del Panel Central ---------------
         
@@ -141,22 +142,23 @@ with tab2:
     
     #----- Configuración de los Elementos del DashBoard ---------------
     
-    #----- Renderizado de la Imagen y el Título en el Dashboard -------
-    st.sidebar.image(Logo, width = 200)
-    st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
-    st.sidebar.divider()
-    
-    # Selección de tipo de mapa base
-    map_tiles = {
-        "OpenStreetMap": "OpenStreetMap",
-        "Satélite (Esri)": "Esri.WorldImagery",
-        "Relieve (Esri)": "Esri.WorldShadedRelief",
-        "Topográfico (Esri)": "Esri.WorldTopoMap",
-        "Minimalista (CartoDB Positron)": "CartoDB Positron",
-        "Oscuro (CartoDB Dark)": "CartoDB DarkMatter"
-    }
-    
-    selected_tile = st.sidebar.selectbox("Tipo de mapa base:", list(map_tiles.keys()))
+    if tab2:
+        #----- Renderizado de la Imagen y el Título en el Dashboard -------
+        st.sidebar.image(Logo, width = 200)
+        st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
+        st.sidebar.divider()
+        
+        # Selección de tipo de mapa base
+        map_tiles = {
+            "OpenStreetMap": "OpenStreetMap",
+            "Satélite (Esri)": "Esri.WorldImagery",
+            "Relieve (Esri)": "Esri.WorldShadedRelief",
+            "Topográfico (Esri)": "Esri.WorldTopoMap",
+            "Minimalista (CartoDB Positron)": "CartoDB Positron",
+            "Oscuro (CartoDB Dark)": "CartoDB DarkMatter"
+        }
+        
+        selected_tile = st.sidebar.selectbox("Tipo de mapa base:", list(map_tiles.keys()))
 
     #----- Configuración de elementos del Panel Central ---------------
     
