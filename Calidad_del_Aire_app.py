@@ -20,6 +20,16 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Selección de tipo de mapa base
+map_tiles = {
+    "OpenStreetMap": "OpenStreetMap",
+    "Satélite (Esri)": "Esri.WorldImagery",
+    "Relieve (Esri)": "Esri.WorldShadedRelief",
+    "Topográfico (Esri)": "Esri.WorldTopoMap",
+    "Minimalista (CartoDB Positron)": "CartoDB Positron",
+    "Oscuro (CartoDB Dark)": "CartoDB DarkMatter"
+}
+
 # Crear pestañas
 tab1, tab2 = st.tabs(["Inicio", "Estaciones de monitoreo"])
 
@@ -64,18 +74,6 @@ elif tab2:
     st.sidebar.image(Logo, width = 200)
     st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
     st.sidebar.divider()
-    
-    # Selección de tipo de mapa base
-    map_tiles = {
-        "OpenStreetMap": "OpenStreetMap",
-        "Satélite (Esri)": "Esri.WorldImagery",
-        "Relieve (Esri)": "Esri.WorldShadedRelief",
-        "Topográfico (Esri)": "Esri.WorldTopoMap",
-        "Minimalista (CartoDB Positron)": "CartoDB Positron",
-        "Oscuro (CartoDB Dark)": "CartoDB DarkMatter"
-    }
-    
-    selected_tile = st.sidebar.selectbox("Tipo de mapa base:", list(map_tiles.keys()))
 
 #-----------------------------------------------------------------
 #----------------------PESTAÑA DE INICIO--------------------------
@@ -179,6 +177,7 @@ with tab2:
     
     # Crear mapa base
     center = [gdf["Latitud"].mean(), gdf["Longitud"].mean()]
+    selected_tile = st.sidebar.selectbox("Tipo de mapa base:", list(map_tiles.keys()))
     m = folium.Map(location=center, zoom_start=11, tiles=map_tiles[selected_tile])
     
     # Dibujar círculos de representatividad
