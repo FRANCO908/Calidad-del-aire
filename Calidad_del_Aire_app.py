@@ -54,9 +54,6 @@ para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', v
 #----- Configuración de elementos del Panel Central ---------------
 #------------------------------------------------------------------
 
-#Definición de las columnas
-colum_1, colum_2 = st.columns(2)
-
 # Cargar el CSV con las estaciones
 data = pd.read_csv("./Datos/Estaciones.csv")
 
@@ -101,10 +98,9 @@ for _, row in gdf.iterrows():
         icon=folium.Icon(color="green", icon="info-sign")
     ).add_to(m)
 
-with colum_1:
-  st.subheader('Mapa de Estaciones de Monitoreo:')
-  # Mostrar mapa en Streamlit
-  st_folium(m, width=600, height=400)
+st.markdown(":blue[Mapa de Estaciones de Monitoreo:]")
+# Mostrar mapa en Streamlit
+st_folium(m, width=600, height=400)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
@@ -122,10 +118,9 @@ df_final = pd.concat([df1, df2, df3, df4, df5, df6, df7, df8], ignore_index=True
 # Convertir "FECHA" a datetime si es necesario
 df_final['FECHA'] = pd.to_datetime(df_final['FECHA'], errors='coerce')
 
-with colum_2:
-  st.markdown(":blue[El **DataFrame** es el siguiente:]")
-  st.dataframe(df_final.head(5000))
-  st.divider()
+st.markdown(":blue[El **DataFrame** es el siguiente:]")
+st.dataframe(df_final.head(5000))
+st.divider()
 
 # Filtrar datos según selección
 df_filtrado = df_final[
