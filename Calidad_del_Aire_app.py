@@ -21,8 +21,6 @@ st.markdown(":blue[La presente aplicación interactiva permite explorar bases de
                     "contribuyendo a la toma de decisiones fundamentadas y al diseño de políticas de calidad del aire "
                     "basadas en datos organizados y estructurados.]")
 
-st.divider()
-
 #------------------------------------------------------------------
 #----- Configuración de los Elementos del DashBoard ---------------
 #------------------------------------------------------------------
@@ -103,11 +101,10 @@ for _, row in gdf.iterrows():
         icon=folium.Icon(color="green", icon="info-sign")
     ).add_to(m)
 
-colum_1.subheader('Mapa de Estaciones de Monitoreo:')
-
-# Mostrar mapa en Streamlit
-st_data = st_folium(m, width=600, height=400)
-st.divider()
+with colum_1:
+  st.subheader('Mapa de Estaciones de Monitoreo:')
+  # Mostrar mapa en Streamlit
+  st_folium(m, width=600, height=400)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
@@ -125,11 +122,10 @@ df_final = pd.concat([df1, df2, df3, df4, df5, df6, df7, df8], ignore_index=True
 # Convertir "FECHA" a datetime si es necesario
 df_final['FECHA'] = pd.to_datetime(df_final['FECHA'], errors='coerce')
 
-st.markdown(":blue[El **DataFrame** es el siguiente:]")
-
-#----- Renderizado del DataFrame ----------------------------------
-st.dataframe(df_final.head(5000))
-st.divider()
+with colum_2:
+  st.markdown(":blue[El **DataFrame** es el siguiente:]")
+  st.dataframe(df_final.head(5000))
+  st.divider()
 
 # Filtrar datos según selección
 df_filtrado = df_final[
