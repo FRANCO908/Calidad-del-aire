@@ -101,7 +101,6 @@ for _, row in gdf.iterrows():
 with st.container():
     st.markdown("### 🗺️ Mapa de Estaciones de Monitoreo")
     st_folium(m, use_container_width=True, height=600)
-st.markdown("", unsafe_allow_html=True)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
