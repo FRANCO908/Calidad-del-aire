@@ -25,8 +25,9 @@ tab1, tab2 = st.tabs(["Inicio", "Estaciones de monitoreo"])
 
 
 
-
+#-----------------------------------------------------------------
 #----------------------PESTAÑA DE INICIO--------------------------
+#-----------------------------------------------------------------
 with tab1:
     # Renderizar imagen y título en la barra lateral
     Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
@@ -42,9 +43,7 @@ with tab1:
                         "contribuyendo a la toma de decisiones fundamentadas y al diseño de políticas de calidad del aire "
                         "basadas en datos organizados y estructurados.]")
     
-    #------------------------------------------------------------------
     #----- Configuración de los Elementos del DashBoard ---------------
-    #------------------------------------------------------------------
     
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
     st.sidebar.image(Logo, width = 200)
@@ -71,10 +70,8 @@ with tab1:
     default_para = vars_para.index('PM10')
     para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_para, index = default_para)
     
-    #------------------------------------------------------------------
     #----- Configuración de elementos del Panel Central ---------------
-    #------------------------------------------------------------------
-    
+        
     # Cargar los datos
     df1 = pd.read_csv("./Datos/datos_parte_1.csv")
     df2 = pd.read_csv("./Datos/datos_parte_2.csv")
@@ -126,9 +123,43 @@ with tab1:
     st.pyplot(fig)
     st.divider()
 
-
+#------------------------------------------------------------------
 #----------------------PESTAÑA DE ESTACIONES-----------------------
+#------------------------------------------------------------------
 with tab2:
+    # Renderizar imagen y título en la barra lateral
+    Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
+    
+    #----- Renderizado del Texto --------------------------------------
+    st.title("Estaciones de monitoreo de la calidad del aire")
+    st.markdown(":blue[El Sistema de Monitoreo Atmosférico de Jalisco (SIMAJ) destaca que las estaciones de  "
+                        "monitoreo de la calidad del aire son casetas cerradas que contienen analizadores para la  "
+                        "medición diferentes contaminantes, sensores meteorológicos y sistemas para la adquisición  "
+                        "y manejo de datos, cada estación con un radio de representatividad de 2 km. Actualmente, hay  "
+                        "13 estaciones meteorológicas distribuidas en El Salto, Guadalajara, Tlaquepaque, Tlajomulco, "
+                        "Tonalá y Zapopan.]")
+    
+    #----- Configuración de los Elementos del DashBoard ---------------
+    
+    #----- Renderizado de la Imagen y el Título en el Dashboard -------
+    st.sidebar.image(Logo, width = 200)
+    st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
+    st.sidebar.divider()
+    
+    # Selección de tipo de mapa base
+    map_tiles = {
+        "OpenStreetMap": "OpenStreetMap",
+        "Satélite (Esri)": "Esri.WorldImagery",
+        "Relieve (Esri)": "Esri.WorldShadedRelief",
+        "Topográfico (Esri)": "Esri.WorldTopoMap",
+        "Minimalista (CartoDB Positron)": "CartoDB Positron",
+        "Oscuro (CartoDB Dark)": "CartoDB DarkMatter"
+    }
+    
+    selected_tile = st.sidebar.selectbox("Tipo de mapa base:", list(map_tiles.keys()))
+
+    #----- Configuración de elementos del Panel Central ---------------
+    
     # Renderizar imagen y título en la barra lateral
     Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
     
@@ -148,7 +179,7 @@ with tab2:
     
     # Crear mapa base
     center = [gdf["Latitud"].mean(), gdf["Longitud"].mean()]
-    m = folium.Map(location=center, zoom_start=11)
+    m = folium.Map(location=center, zoom_start=11, tiles=map_tiles[selected_tile])
     
     # Dibujar círculos de representatividad
     for _, row in gdf.iterrows():
