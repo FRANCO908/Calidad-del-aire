@@ -98,13 +98,9 @@ for _, row in gdf.iterrows():
         icon=folium.Icon(color="green", icon="info-sign")
     ).add_to(m)
 
-st.markdown(":blue[Mapa de Estaciones de Monitoreo:]")
-
-# Mostrar mapa en Streamlit
-st_folium(m, use_container_width=True, height=600)
-
-# Eliminar espacio extra vertical (si lo hay)
-st.markdown(" ", unsafe_allow_html=True)
+with st.container():
+    st.markdown("### 🗺️ Mapa de Estaciones de Monitoreo")
+    st_folium(m, use_container_width=True, height=600)
 
 # Cargar los datos
 df1 = pd.read_csv("./Datos/datos_parte_1.csv")
