@@ -21,7 +21,7 @@ st.markdown(
 )
 
 # Crear pestañas
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Inicio", "Estaciones de monitoreo", "Comportamiento anual", 
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento anual", 
                                         "Comportamiento estacional", "Correlación de parámetros"])
 
 #-----------------------------------------------------------------
@@ -124,10 +124,17 @@ with tab1:
     st.pyplot(fig)
     st.divider()
 
+#-----------------------------------------------------------------
+#----------------------PESTAÑA DE CONTAMINANTES-------------------
+#-----------------------------------------------------------------
+with tab2:
+    st.title("Monitoreo de contaminates criterio")
+
+
 #------------------------------------------------------------------
 #----------------------PESTAÑA DE ESTACIONES-----------------------
 #------------------------------------------------------------------
-with tab2:
+with tab3:
     # Renderizar imagen y título en la barra lateral
     Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
     
