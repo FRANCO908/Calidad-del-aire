@@ -235,6 +235,7 @@ with tab4:
     ax.set_ylabel(f"Promedio de {para_selected}")
     ax.grid()
     plt.xticks(range(0, 24))
+    ax.set_xticklabels([f"{h}h" for h in df_promedio_horario["HORA"]])
     
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
