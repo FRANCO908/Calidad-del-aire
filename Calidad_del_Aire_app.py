@@ -216,6 +216,30 @@ with tab3:
 with tab4:
     st.title("Comportamiento de mediociones promedio")
 
+    # Filtrar datos según selección (Estación y Año)
+    df_filtrado = df_final[
+        (df_final['CLAVE_EST'] == est_selected) & 
+        (df_final['FECHA'].dt.year == int(year_selected))
+    ].copy()
+    
+    # Agrupar por hora del día y calcular el promedio del contaminante
+    df_filtrado["HORA"] = df_filtrado["FECHA"].dt.hour
+    df_promedio_horario = df_filtrado.groupby("HORA")[para_selected].mean().reset_index()
+    
+    # Crear gráfico en Matplotlib
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.plot(df_promedio_horario["HORA"], df_promedio_horario[para_selected], marker='o', linestyle='-', color='b')
+    
+    # Personalizar gráfico
+    ax.set_title(f"Promedio horario de {para_selected} en {est_selected} ({year_selected})")
+    ax.set_xlabel("Hora del día")
+    ax.set_ylabel(f"Promedio de {para_selected}")
+    ax.grid()
+    plt.xticks(range(0, 24))  # Mostrar todas las horas en el eje X
+    
+    # Mostrar el gráfico en Streamlit
+    st.pyplot(fig)
+
 #-----------------------------------------------------------------
 #-------------PESTAÑA DE COMPORTAMIENTO ESTACIONAL----------------
 #-----------------------------------------------------------------
