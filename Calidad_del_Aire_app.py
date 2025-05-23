@@ -20,24 +20,27 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Selección de tipo de mapa base
-map_tiles = {
-    "OpenStreetMap": "OpenStreetMap",
-    "Satélite (Esri)": "Esri.WorldImagery",
-    "Relieve (Esri)": "Esri.WorldShadedRelief",
-    "Topográfico (Esri)": "Esri.WorldTopoMap",
-    "Minimalista (CartoDB Positron)": "CartoDB Positron",
-    "Oscuro (CartoDB Dark)": "CartoDB DarkMatter"
-}
-
 # Crear pestañas
 tab1, tab2 = st.tabs(["Inicio", "Estaciones de monitoreo"])
 
-#----------------------------------------------------------------
-#----------------MENÚ DE CONFIGURACIÓN---------------------------
-#----------------------------------------------------------------
+#-----------------------------------------------------------------
+#----------------------PESTAÑA DE INICIO--------------------------
+#-----------------------------------------------------------------
 
-if tab1:
+with tab1:    
+    #----- Renderizado del Texto --------------------------------------
+    st.title("Histórico de monitoreo de contaminantes atmosféricos en la ZMG  (1996 a 2023)")
+    st.markdown(":blue[La presente aplicación interactiva permite explorar bases de datos sobre "
+                        "parámetros de contaminación atmosférica en la **Zona Metropolitana de Guadalajara** (Jalisco, México), abarcando "
+                        "el periodo de 1996 a 2023. Mediante el uso de la **librería Pandas**, los registros históricos "
+                        "fueron homogeneizados y unificados, lo que facilita su procesamiento y análisis eficiente. "
+                        "Es importante señalar que los datos no han sido verificados, por lo que deben interpretarse "
+                        "con precaución. Sin embargo, el objetivo principal es optimizar el acceso y manejo de información clave, "
+                        "contribuyendo a la toma de decisiones fundamentadas y al diseño de políticas de calidad del aire "
+                        "basadas en datos organizados y estructurados.]")
+    
+    #---------------------Menú de configuración------------------------
+    
     # Renderizar imagen y título en la barra lateral
     Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
     
@@ -66,29 +69,6 @@ if tab1:
     para_selected = st.sidebar.selectbox('Elección del parámetro de medición:', vars_para, index = default_para)
     st.sidebar.divider()
 
-elif tab2:
-    # Renderizar imagen y título en la barra lateral
-    Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
-    
-    #----- Renderizado de la Imagen y el Título en el Dashboard -------
-    st.sidebar.image(Logo, width = 200)
-    st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
-    st.sidebar.divider()
-
-#-----------------------------------------------------------------
-#----------------------PESTAÑA DE INICIO--------------------------
-#-----------------------------------------------------------------
-with tab1:    
-    #----- Renderizado del Texto --------------------------------------
-    st.title("Histórico de monitoreo de contaminantes atmosféricos en la ZMG  (1996 a 2023)")
-    st.markdown(":blue[La presente aplicación interactiva permite explorar bases de datos sobre "
-                        "parámetros de contaminación atmosférica en la **Zona Metropolitana de Guadalajara** (Jalisco, México), abarcando "
-                        "el periodo de 1996 a 2023. Mediante el uso de la **librería Pandas**, los registros históricos "
-                        "fueron homogeneizados y unificados, lo que facilita su procesamiento y análisis eficiente. "
-                        "Es importante señalar que los datos no han sido verificados, por lo que deben interpretarse "
-                        "con precaución. Sin embargo, el objetivo principal es optimizar el acceso y manejo de información clave, "
-                        "contribuyendo a la toma de decisiones fundamentadas y al diseño de políticas de calidad del aire "
-                        "basadas en datos organizados y estructurados.]")
     
     #----- Configuración de elementos del Panel Central ---------------
         
@@ -159,6 +139,18 @@ with tab2:
                         "13 estaciones meteorológicas distribuidas en El Salto, Guadalajara, Tlaquepaque, Tlajomulco, "
                         "Tonalá y Zapopan.]")
 
+    #---------------------Menú de configuración------------------------
+
+    st.sidebar.markdown(":blue[Sección de estaciones:]")
+
+    # Selección de tipo de mapa base
+    map_tiles = {
+        "OpenStreetMap": "OpenStreetMap",
+        "Satélite (Esri)": "Esri.WorldImagery",
+        "Minimalista (CartoDB Positron)": "CartoDB Positron",
+        "Oscuro (CartoDB Dark)": "CartoDB DarkMatter"
+    }
+    
     #----- Configuración de elementos del Panel Central ---------------
     
     # Cargar el CSV con las estaciones
@@ -177,7 +169,6 @@ with tab2:
     
     # Crear mapa base
     center = [gdf["Latitud"].mean(), gdf["Longitud"].mean()]
-    st.sidebar.markdown(":blue[Sección de estaciones:]")
     selected_tile = st.sidebar.selectbox("Tipo de mapa base:", list(map_tiles.keys()))
     m = folium.Map(location=center, zoom_start=11, tiles=map_tiles[selected_tile])
     
