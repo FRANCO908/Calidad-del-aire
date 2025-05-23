@@ -210,3 +210,16 @@ with tab3:
         st.markdown("### 🗺️ Mapa de Estaciones de Monitoreo")
         st_folium(m, use_container_width=True, height=600)
 
+#-----------------------------------------------------------------
+#---------------PESTAÑA DE COMPORTAMIENTO ANUAL-------------------
+#-----------------------------------------------------------------
+with tab4:
+    st.title("Comportamiento de mediociones promedio")
+
+#-----------------------------------------------------------------
+#-------------PESTAÑA DE COMPORTAMIENTO ESTACIONAL----------------
+#-----------------------------------------------------------------
+with tab5:
+    st.title("Comportamiento por temporada climatológica de mediociones promedio")
+
+
