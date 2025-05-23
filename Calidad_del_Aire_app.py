@@ -10,10 +10,10 @@ from shapely.geometry import Point
 st.markdown(
     """
     <style>
-    .main .block-container {
-        max-width: 95%;
-        padding-left: 2rem;
-        padding-right: 2rem;
+    .block-container {
+        max-width: 95% !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
     }
     </style>
     """,
