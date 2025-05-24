@@ -2,6 +2,7 @@ pandas
 geopandas
 streamlit
 matplotlib
+seaborn
 scikit-image
 folium
 streamlit-folium
