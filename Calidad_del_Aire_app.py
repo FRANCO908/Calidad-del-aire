@@ -291,6 +291,8 @@ with tab5:
 #---------------------PESTAÑA DE CORRELACIÓN----------------------
 #-----------------------------------------------------------------
 with tab6:
+    st.title("Relaciones entre los contaminantes y parámetros meteorológicos")
+    
     # Filtrar datos según selección (Estación y Año)
     df_filtrado = df_final[
         (df_final['CLAVE_EST'] == est_selected) & 
