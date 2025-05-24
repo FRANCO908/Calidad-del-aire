@@ -214,7 +214,7 @@ with tab3:
 #---------------PESTAÑA DE COMPORTAMIENTO ANUAL-------------------
 #-----------------------------------------------------------------
 with tab4:
-    st.title("Comportamiento de mediociones promedio")
+    st.title("Comportamiento de mediociones promedio para cada hora del día")
 
     # Filtrar datos según estación y año seleccionados
     df_filtrado = df_final[
@@ -244,6 +244,44 @@ with tab4:
 #-------------PESTAÑA DE COMPORTAMIENTO ESTACIONAL----------------
 #-----------------------------------------------------------------
 with tab5:
-    st.title("Comportamiento por temporada climatológica de mediociones promedio")
+    st.title("Comportamiento por temporada climatológica de mediociones promedio para cada hora del día")
 
-
+    # Filtrar datos según estación de monitoreo y año seleccionado
+    df_filtrado = df_final[
+        (df_final['CLAVE_EST'] == est_selected) & 
+        (df_final['FECHA'].dt.year == int(year_selected))
+    ].copy()
+    
+    # Clasificar cada registro en su respectiva estación meteorológica
+    def clasificar_estacion(mes):
+        if mes in [11, 12, 1, 2]:
+            return "Seca fría"
+        elif mes in [3, 4, 5]:
+            return "Seca cálida"
+        elif mes in [6, 7, 8, 9, 10]:
+            return "Período de lluvias"
+    
+    df_filtrado["ESTACION_METEOROLÓGICA"] = df_filtrado["FECHA"].dt.month.apply(clasificar_estacion)
+    
+    # Agrupar por estación meteorológica y hora del día
+    df_promedio_horario = df_filtrado.groupby(["ESTACION_METEOROLÓGICA", "HORA"])[para_selected].mean().reset_index()
+    
+    # Crear gráfico con los datos por hora del día y estaciones meteorológicas
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
+    # Graficar cada estación meteorológica con colores diferentes
+    colores = {"Seca fría": "green", "Seca cálida": "red", "Período de lluvias": "blue"}
+    for estacion in df_promedio_horario["ESTACION_METEOROLÓGICA"].unique():
+        datos = df_promedio_horario[df_promedio_horario["ESTACION_METEOROLÓGICA"] == estacion]
+        ax.plot(datos["HORA"], datos[para_selected], marker='o', linestyle='-', label=estacion, color=colores[estacion])
+    
+    # Personalizar gráfico
+    ax.set_title(f"Promedio horario de {para_selected} en {est_selected} ({year_selected})")
+    ax.set_xlabel("Hora del día")
+    ax.set_ylabel(f"Promedio de {para_selected}")
+    ax.legend(title="Estación del año")
+    ax.grid()
+    plt.xticks(range(0, 24), rotation=45)
+    
+    # Mostrar el gráfico en Streamlit
+    st.pyplot(fig)
