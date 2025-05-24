@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
+import seaborn as sns
 from skimage import io
 import folium
 from streamlit_folium import st_folium
@@ -282,6 +283,31 @@ with tab5:
     ax.legend(title="Estación del año")
     ax.grid()
     plt.xticks(range(0, 24), rotation=45)
+    
+    # Mostrar el gráfico en Streamlit
+    st.pyplot(fig)
+
+#-----------------------------------------------------------------
+#---------------------PESTAÑA DE CORRELACIÓN----------------------
+#-----------------------------------------------------------------
+with tab6:
+    # Filtrar datos según selección (Estación y Año)
+    df_filtrado = df_final[
+        (df_final['CLAVE_EST'] == est_selected) & 
+        (df_final['FECHA'].dt.year == int(year_selected))
+    ].copy()
+    
+    # Seleccionar solo los parámetros de monitoreo
+    df_corr = df_filtrado[vars_para].corr()
+    
+    # Crear figura con Matplotlib y Seaborn
+    fig, ax = plt.subplots(figsize=(12, 8))
+    sns.heatmap(df_corr, annot=True, fmt=".2f", cmap="coolwarm", linewidths=0.5, ax=ax)
+    
+    # Personalizar gráfico
+    ax.set_title(f"Matriz de correlación de parámetros en {est_selected} ({year_selected})")
+    plt.xticks(rotation=45)
+    plt.yticks(rotation=0)
     
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
