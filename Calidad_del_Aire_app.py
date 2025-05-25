@@ -224,6 +224,7 @@ with tab4:
     ].copy()
     
     # Agrupar y calcular el promedio por hora
+    df_filtrado["HORA"] = df_final["HORA"].astype(float).astype(int)
     df_promedio_horario = df_filtrado.groupby("HORA")[para_selected].mean().reset_index()
     
     # Crear gráfico con los datos por hora del día
@@ -236,7 +237,7 @@ with tab4:
     ax.set_ylabel(f"Promedio de {para_selected}")
     ax.grid()
     ax.set_xticks(range(0, 24))  # Asegura 24 etiquetas
-    ax.set_xticklabels([str(h) for h in range(0, 24)], rotation=45)
+    ax.set_xticklabels([str(h) for h in range(0, 24)])
     
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
