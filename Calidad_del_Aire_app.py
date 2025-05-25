@@ -223,6 +223,9 @@ with tab4:
         (df_final['FECHA'].dt.year == int(year_selected))
     ].copy()
 
+    df_filtrado["HORA"] = df_filtrado["HORA"].astype(str).str[:2]  # Extrae solo la hora en formato "08", "09", etc.
+    df_filtrado["HORA"] = df_filtrado["HORA"].astype(int)  # Convierte a número entero para la agrupación
+    
     # Agrupar directamente por la columna de horas y calcular el promedio por hora
     df_promedio_horario = df_filtrado.groupby("HORA")[para_selected].mean().reset_index()
 
