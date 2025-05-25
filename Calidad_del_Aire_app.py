@@ -224,9 +224,8 @@ with tab4:
     ].copy()
     
     # Agrupar y calcular el promedio por hora
-    df_filtrado["HORA"] = df_filtrado["HORA"].astype(float).astype(int)
-    df_promedio_horario = df_filtrado.groupby("HORA")[para_selected].mean().reset_index()
-    
+    df_filtrado["HORA"] = pd.to_datetime(df_filtrado["HORA"], format="%H:%M:%S", errors="coerce").dt.hour
+
     # Crear gráfico con los datos por hora del día
     fig, ax = plt.subplots(figsize=(12, 6))
     ax.plot(df_promedio_horario["HORA"], df_promedio_horario[para_selected], marker='o', linestyle='-', color='b')
