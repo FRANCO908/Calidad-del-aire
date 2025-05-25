@@ -224,7 +224,7 @@ with tab4:
     ].copy()
     
     # Agrupar y calcular el promedio por hora
-    df_filtrado["HORA"] = df_final["HORA"].astype(float).astype(int)
+    df_filtrado["HORA"] = df_filtrado["HORA"].astype(float).astype(int)
     df_promedio_horario = df_filtrado.groupby("HORA")[para_selected].mean().reset_index()
     
     # Crear gráfico con los datos por hora del día
