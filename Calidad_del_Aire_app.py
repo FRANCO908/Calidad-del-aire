@@ -222,11 +222,8 @@ with tab4:
         (df_final['CLAVE_EST'] == est_selected) & 
         (df_final['FECHA'].dt.year == int(year_selected))
     ].copy()
-    
-    # Extraer hora del campo FECHA (recomendado)
-    df_filtrado["HORA"] = pd.to_datetime(df_filtrado["FECHA"]).dt.hour
-    
-    # Agrupar por hora y calcular promedio
+
+    # Agrupar directamente por la columna de horas y calcular el promedio por hora
     df_promedio_horario = df_filtrado.groupby("HORA")[para_selected].mean().reset_index()
 
     # Crear gráfico con los datos por hora del día
