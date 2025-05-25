@@ -235,8 +235,8 @@ with tab4:
     ax.set_xlabel("Hora del día")
     ax.set_ylabel(f"Promedio de {para_selected}")
     ax.grid()
-    plt.xticks(range(0, 24))
-    plt.xticks(rotation=45)
+    ax.set_xticks(range(0, 24))  # Asegura 24 etiquetas
+    ax.set_xticklabels([str(h) for h in range(0, 24)], rotation=45)
     
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
