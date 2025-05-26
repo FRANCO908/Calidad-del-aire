@@ -267,6 +267,9 @@ with tab5:
     
     df_filtrado["ESTACION_METEOROLÓGICA"] = df_filtrado["FECHA"].dt.month.apply(clasificar_estacion)
     
+    df_filtrado["HORA"] = df_filtrado["HORA"].astype(str).str[:2]  # Extrae solo la hora en formato "08", "09", etc.
+    df_filtrado["HORA"] = df_filtrado["HORA"].astype(int)  # Convierte a número entero para la agrupación
+    
     # Agrupar por estación meteorológica y hora del día
     df_promedio_horario = df_filtrado.groupby(["ESTACION_METEOROLÓGICA", "HORA"])[para_selected].mean().reset_index()
     
