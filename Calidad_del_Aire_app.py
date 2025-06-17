@@ -90,8 +90,8 @@ with tab1:
     # Convertir "FECHA" a datetime si es necesario
     df_final['FECHA'] = pd.to_datetime(df_final['FECHA'], errors='coerce')
     
-    st.markdown(":blue[El **DataFrame** es el siguiente:]")
-    st.dataframe(df_final.head(5000))
+    st.markdown(":blue[La estructura del **DataFrame** es la siguiente (estracto):]")
+    st.dataframe(df_final.head(100))
     st.divider()
     
     # Filtrar datos según selección
