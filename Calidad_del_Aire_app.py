@@ -21,6 +21,21 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    .markdown-blue p, 
+    .markdown-blue li, 
+    .markdown-blue h1, 
+    .markdown-blue h2, 
+    .markdown-blue h3 {
+        color: #1f77b4;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Crear pestañas
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento anual", 
                                         "Comportamiento estacional", "Correlación de parámetros"])
@@ -130,11 +145,11 @@ with tab1:
 #-----------------------------------------------------------------
 with tab2:
     st.title("Monitoreo de contaminates criterio")
-    with open("Contaminantes.md", "r", encoding="utf-8") as file:
-        texto = file.read()
+    with open("informacion.md", "r", encoding="utf-8") as file:
+        contenido = file.read()
     
     st.markdown(
-        f"<div style='color:blue;'>{texto}</div>",
+        f"<div class='markdown-blue'>{contenido}</div>",
         unsafe_allow_html=True
     )
 
