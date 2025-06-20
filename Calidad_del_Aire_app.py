@@ -44,7 +44,7 @@ with tab1:
     #---------------------Menú de configuración------------------------
     
     # Renderizar imagen y título en la barra lateral
-    Logo = io.imread(r"./Imagenes/ITESO_Logo.png")
+    Logo = io.imread(r"./Imagenes/FRANCO908_logo.png")
     
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
     st.sidebar.image(Logo, width = 200)
