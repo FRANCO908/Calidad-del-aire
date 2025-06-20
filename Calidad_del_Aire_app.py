@@ -32,14 +32,14 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Inicio", "Contaminates criterio",
 with tab1:    
     #----- Renderizado del Texto --------------------------------------
     st.title("Histórico de monitoreo de contaminantes atmosféricos en la ZMG  (1996 a 2023)")
-    st.markdown("[La presente aplicación interactiva permite explorar bases de datos sobre "
+    st.markdown("La presente aplicación interactiva permite explorar bases de datos sobre "
                         "parámetros de contaminación atmosférica en la **Zona Metropolitana de Guadalajara** (Jalisco, México), abarcando "
                         "el periodo de 1996 a 2023. Mediante el uso de la **librería Pandas**, los registros históricos "
                         "fueron homogeneizados y unificados, lo que facilita su procesamiento y análisis eficiente. "
                         "Es importante señalar que los datos no han sido verificados, por lo que deben interpretarse "
                         "con precaución. Sin embargo, el objetivo principal es optimizar el acceso y manejo de información clave, "
                         "contribuyendo a la toma de decisiones fundamentadas y al diseño de políticas de calidad del aire "
-                        "basadas en datos organizados y estructurados.]")
+                        "basadas en datos organizados y estructurados.")
     
     #---------------------Menú de configuración------------------------
     
@@ -90,7 +90,7 @@ with tab1:
     # Convertir "FECHA" a datetime si es necesario
     df_final['FECHA'] = pd.to_datetime(df_final['FECHA'], errors='coerce')
     
-    st.markdown(":blue[La estructura del **DataFrame** es la siguiente (estracto):]")
+    st.markdown("La estructura del **DataFrame** es la siguiente (estracto):")
     st.dataframe(df_final.head(100))
     st.divider()
     
@@ -118,8 +118,8 @@ with tab1:
     ax.grid()
     plt.xticks(rotation=45)
     
-    st.markdown(":blue[Utilice el siguiente gráfico modificable para explorar los datos fácilmente, " 
-                      "seleccionando estación de monitoreo, año y contaminante o parámetro de interés desde el Menú de configuración.]")
+    st.markdown("Utilice el siguiente gráfico modificable para explorar los datos fácilmente, " 
+                      "seleccionando estación de monitoreo, año y contaminante o parámetro de interés desde el Menú de configuración.")
     
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
