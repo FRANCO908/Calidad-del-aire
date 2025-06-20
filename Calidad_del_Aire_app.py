@@ -47,7 +47,7 @@ with tab1:
     Logo = io.imread(r"./Imagenes/app_logo.png")
     
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
-    st.sidebar.image(Logo, width = 200)
+    st.sidebar.image(Logo, width = 250)
     st.sidebar.markdown("## MENÚ DE CONFIGURACIÓN")
 
     st.sidebar.markdown(":blue[Sección de inicio:]")
