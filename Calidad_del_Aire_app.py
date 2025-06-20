@@ -131,7 +131,12 @@ with tab1:
 with tab2:
     st.title("Monitoreo de contaminates criterio")
     with open("Contaminantes.md", "r", encoding="utf-8") as file:
-        st.markdown(file.read())
+        texto = file.read()
+    
+    st.markdown(
+        f"<div style='color:blue;'>{texto}</div>",
+        unsafe_allow_html=True
+    )
 
 #------------------------------------------------------------------
 #----------------------PESTAÑA DE ESTACIONES-----------------------
