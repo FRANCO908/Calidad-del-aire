@@ -44,7 +44,7 @@ with tab1:
     #---------------------Menú de configuración------------------------
     
     # Renderizar imagen y título en la barra lateral
-    Logo = io.imread(r"./Imagenes/FRANCO908_logo.png")
+    Logo = io.imread(r"./Imagenes/app_logo.png")
     
     #----- Renderizado de la Imagen y el Título en el Dashboard -------
     st.sidebar.image(Logo, width = 200)
@@ -143,12 +143,12 @@ with tab3:
     
     #----- Renderizado del Texto --------------------------------------
     st.title("Estaciones de monitoreo de la calidad del aire")
-    st.markdown(":blue[El Sistema de Monitoreo Atmosférico de Jalisco (SIMAJ) destaca que las estaciones de  "
+    st.markdown("El Sistema de Monitoreo Atmosférico de Jalisco (SIMAJ) destaca que las estaciones de  "
                         "monitoreo de la calidad del aire son casetas cerradas que contienen analizadores para la  "
                         "medición diferentes contaminantes, sensores meteorológicos y sistemas para la adquisición  "
                         "y manejo de datos, cada estación con un radio de representatividad de 2 km. Actualmente, hay  "
                         "13 estaciones meteorológicas distribuidas en El Salto, Guadalajara, Tlaquepaque, Tlajomulco, "
-                        "Tonalá y Zapopan.]")
+                        "Tonalá y Zapopan.")
 
     #---------------------Menú de configuración------------------------
 
