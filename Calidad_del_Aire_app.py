@@ -24,17 +24,19 @@ st.markdown(
 st.markdown(
     """
     <style>
-    .markdown-blue p, 
-    .markdown-blue li, 
-    .markdown-blue h1, 
-    .markdown-blue h2, 
-    .markdown-blue h3 {
-        color: #1f77b4;
+    .markdown-blue p,
+    .markdown-blue h1,
+    .markdown-blue h2,
+    .markdown-blue h3,
+    .markdown-blue li,
+    .markdown-blue li * {
+        color: #1f77b4 !important;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 # Crear pestañas
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento anual", 
