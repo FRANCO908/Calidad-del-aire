@@ -130,7 +130,8 @@ with tab1:
 #-----------------------------------------------------------------
 with tab2:
     st.title("Monitoreo de contaminates criterio")
-
+    with open("informacion.md", "r", encoding="utf-8") as file:
+        st.markdown(file.read())
 
 #------------------------------------------------------------------
 #----------------------PESTAÑA DE ESTACIONES-----------------------
