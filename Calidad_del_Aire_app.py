@@ -22,7 +22,7 @@ st.markdown(
 )
 
 # Crear pestañas
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento anual", 
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento horario", 
                                         "Comportamiento estacional", "Correlación de parámetros"])
 
 #-----------------------------------------------------------------
