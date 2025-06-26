@@ -118,8 +118,11 @@ with tab1:
     ax.grid()
     plt.xticks(rotation=45)
     
-    st.markdown("Utilice el siguiente gráfico modificable para explorar los datos fácilmente, " 
-                      "seleccionando estación de monitoreo, año y contaminante o parámetro de interés desde el Menú de configuración.")
+    st.markdown("Esta aplicación incluye gráficos interactivos que permiten explorar fácilmente los datos al " 
+                      "seleccionar la estación de monitoreo, el año y el contaminante o parámetro de interés desde "
+                        "el menú de configuración. Al final de cada gráfico se presenta el objetivo analítico o uso " 
+                       "sugerido en función de la escala temporal utilizada, así como sus principales ventajas y "
+                       "limitaciones para el análisis de la calidad del aire.")
     
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
