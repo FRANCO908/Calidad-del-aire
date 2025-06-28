@@ -220,7 +220,7 @@ with tab3:
 #---------------PESTAÑA DE COMPORTAMIENTO ANUAL-------------------
 #-----------------------------------------------------------------
 with tab4:
-    st.title("Comportamiento de mediociones promedio para cada hora del día")
+    st.title("Comportamiento de mediciones promedio para cada hora del día")
 
     # Filtrar datos según estación y año seleccionados
     df_filtrado = df_final[
@@ -253,7 +253,7 @@ with tab4:
 #-------------PESTAÑA DE COMPORTAMIENTO ESTACIONAL----------------
 #-----------------------------------------------------------------
 with tab5:
-    st.title("Comportamiento por temporada climatológica de mediociones promedio para cada hora del día")
+    st.title("Comportamiento por temporada climatológica de mediciones promedio para cada hora del día")
 
     # Filtrar datos según estación de monitoreo y año seleccionado
     df_filtrado = df_final[
