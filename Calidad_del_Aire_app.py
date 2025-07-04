@@ -22,7 +22,7 @@ st.markdown(
 )
 
 # Crear pestañas
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento horario", 
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento anual", "Comportamiento horario", 
                                         "Comportamiento estacional", "Correlación de parámetros"])
 
 #-----------------------------------------------------------------
@@ -220,6 +220,12 @@ with tab3:
 #---------------PESTAÑA DE COMPORTAMIENTO ANUAL-------------------
 #-----------------------------------------------------------------
 with tab4:
+    st.title("Comportamiento de mediciones promedio para cada mes del año")
+
+#-----------------------------------------------------------------
+#---------------PESTAÑA DE COMPORTAMIENTO HORARIO-----------------
+#-----------------------------------------------------------------
+with tab5:
     st.title("Comportamiento de mediciones promedio para cada hora del día")
 
     # Filtrar datos según estación y año seleccionados
@@ -252,7 +258,7 @@ with tab4:
 #-----------------------------------------------------------------
 #-------------PESTAÑA DE COMPORTAMIENTO ESTACIONAL----------------
 #-----------------------------------------------------------------
-with tab5:
+with tab6:
     st.title("Comportamiento por temporada climatológica de mediciones promedio para cada hora del día")
 
     # Filtrar datos según estación de monitoreo y año seleccionado
@@ -301,7 +307,7 @@ with tab5:
 #-----------------------------------------------------------------
 #---------------------PESTAÑA DE CORRELACIÓN----------------------
 #-----------------------------------------------------------------
-with tab6:
+with tab7:
     st.title("Relaciones entre los contaminantes y parámetros meteorológicos")
     
     # Filtrar datos según selección (Estación y Año)
