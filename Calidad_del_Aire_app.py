@@ -23,7 +23,7 @@ st.markdown(
 
 # Crear pestañas
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Inicio", "Contaminates criterio", "Estaciones de monitoreo", "Comportamiento anual", "Comportamiento horario", 
-                                        "Comportamiento estacional", "Correlación de parámetros"])
+                                        "Comportamiento estacional", "Matriz de correlación"])
 
 #-----------------------------------------------------------------
 #----------------------PESTAÑA DE INICIO--------------------------
@@ -297,7 +297,7 @@ with tab6:
     ax.set_ylabel(f"Promedio de {para_selected}")
     ax.legend(title="Estación del año")
     ax.grid()
-    plt.xticks(range(0, 24), rotation=45)
+    plt.xticks(range(0, 24), rotation=0)
     
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
