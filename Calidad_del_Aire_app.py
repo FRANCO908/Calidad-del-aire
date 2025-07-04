@@ -93,39 +93,11 @@ with tab1:
     st.markdown("La estructura del **DataFrame** es la siguiente (estracto):")
     st.dataframe(df_final.head(100))
     st.divider()
-    
-    # Filtrar datos según selección
-    df_filtrado = df_final[
-        (df_final['CLAVE_EST'] == est_selected) & 
-        (df_final['FECHA'].dt.year == int(year_selected))
-    ].copy()
-    
-    # st.dataframe(df_filtrado)
-    # st.divider()
-    
-    # Calcular el promedio mensual
-    df_filtrado['AÑO-MES'] = df_filtrado['FECHA'].dt.to_period("M")
-    df_promedio_mensual = df_filtrado.groupby('AÑO-MES')[para_selected].mean().reset_index()
-    
-    # Crear gráfico en Matplotlib
-    fig, ax = plt.subplots(figsize=(12, 6))
-    ax.plot(df_promedio_mensual['AÑO-MES'].astype(str), df_promedio_mensual[para_selected], marker='o', linestyle='-', color='b')
-    
-    # Personalizar gráfico
-    ax.set_title(f'Promedio mensual de {para_selected} en {est_selected} ({year_selected})')
-    ax.set_xlabel('Fecha (Año-Mes)')
-    ax.set_ylabel(f'Promedio de {para_selected}')
-    ax.grid()
-    plt.xticks(rotation=45)
-    
     st.markdown("Esta aplicación incluye gráficos interactivos que permiten explorar fácilmente los datos al " 
                       "seleccionar la estación de monitoreo, el año y el contaminante o parámetro de interés desde "
                         "el menú de configuración. Al final de cada gráfico se presenta el objetivo analítico o uso " 
                        "sugerido en función de la escala temporal utilizada, así como sus principales ventajas y "
                        "limitaciones para el análisis de la calidad del aire.")
-    
-    # Mostrar el gráfico en Streamlit
-    st.pyplot(fig)
     st.divider()
 
 #-----------------------------------------------------------------
@@ -221,6 +193,32 @@ with tab3:
 #-----------------------------------------------------------------
 with tab4:
     st.title("Comportamiento de mediciones promedio para cada mes del año")
+    # Filtrar datos según selección
+    df_filtrado = df_final[
+        (df_final['CLAVE_EST'] == est_selected) & 
+        (df_final['FECHA'].dt.year == int(year_selected))
+    ].copy()
+    
+    # st.dataframe(df_filtrado)
+    # st.divider()
+    
+    # Calcular el promedio mensual
+    df_filtrado['AÑO-MES'] = df_filtrado['FECHA'].dt.to_period("M")
+    df_promedio_mensual = df_filtrado.groupby('AÑO-MES')[para_selected].mean().reset_index()
+    
+    # Crear gráfico en Matplotlib
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.plot(df_promedio_mensual['AÑO-MES'].astype(str), df_promedio_mensual[para_selected], marker='o', linestyle='-', color='b')
+    
+    # Personalizar gráfico
+    ax.set_title(f'Promedio mensual de {para_selected} en {est_selected} ({year_selected})')
+    ax.set_xlabel('Fecha (Año-Mes)')
+    ax.set_ylabel(f'Promedio de {para_selected}')
+    ax.grid()
+    plt.xticks(rotation=45)
+    
+    # Mostrar el gráfico en Streamlit
+    st.pyplot(fig)
 
 #-----------------------------------------------------------------
 #---------------PESTAÑA DE COMPORTAMIENTO HORARIO-----------------
