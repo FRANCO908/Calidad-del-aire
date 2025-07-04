@@ -12,7 +12,7 @@ La Comisión Federal para la Protección contra Riesgos Sanitarios indica que lo
 
 Las bases de datos más recientes contienen información de los siguientes **contaminantes criterio** y **parámetros meteorológicos**.
 
-## Contaminantes criterio
+### Contaminantes criterio
 
 - **Ozono (O₃)**, medido en **ppm**  
 - **Óxido de Nitrógeno (NO)**, medido en **ppm**  
@@ -23,7 +23,7 @@ Las bases de datos más recientes contienen información de los siguientes **con
 - **Partículas menores a 10 micrómetros (PM10)**, medido en **µg/m³**  
 - **Partículas menores a 2.5 micrómetros (PM2.5)**, medido en **µg/m³**
 
-## Parámetros meteorológicos
+### Parámetros meteorológicos
 
 - **Temperatura Interna (TMPI)**, medida en **°C**  
 - **Temperatura Externa (TMP)**, medida en **°C**  
