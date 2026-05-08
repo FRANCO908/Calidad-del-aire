@@ -26,9 +26,9 @@ A través de una interfaz interactiva, la aplicación permitirá **explorar tend
 Este proyecto busca proporcionar una herramienta para la **exploración y análisis de datos ambientales**, facilitando la interpretación de tendencias en la calidad del aire y apoyando la **toma de decisiones** en políticas públicas, investigación y gestión ambiental.  
 
 ###  **Tecnologías utilizadas**  
-🔹 **Streamlit** → Creación de interfaz interactiva [https://calidad-del-aire-6gqhwurrgs2eeyp4gfyhmd.streamlit.app/].
-🔹 **Pandas** → Manipulación y homogenización de bases de datos.  
-🔹 **Folium** → Mapas dinámicos de estaciones de monitoreo.  
-🔹 **Matplotlib & Seaborn** → Visualización gráfica avanzada.  
+* **Streamlit** → Creación de interfaz interactiva [https://calidad-del-aire-6gqhwurrgs2eeyp4gfyhmd.streamlit.app/].
+* **Pandas** → Manipulación y homogenización de bases de datos.  
+* **Folium** → Mapas dinámicos de estaciones de monitoreo.  
+* **Matplotlib & Seaborn** → Visualización gráfica avanzada.  
 
 **Explora tendencias de contaminación en la ZMG y optimiza el acceso a datos clave para el análisis ambiental!**  
