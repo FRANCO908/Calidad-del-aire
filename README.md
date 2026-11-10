@@ -10,7 +10,7 @@ A través de una interfaz interactiva, la aplicación permitirá **explorar tend
    - Identificación de estaciones de monitoreo con detalles como **nombre, clave, fecha de instalación y radio de representatividad en las mediciones**.  
    - Estimación de la **población contenida en áreas de influencia** (2020).  
 
-✔ **Comportamiento promedio de contaminantes y parámetros meteorológicos por hora del día** ⏳  
+✔ **Comportamiento promedio de contaminantes y parámetros meteorológicos por hora del día**   
    - Exploración detallada de las variaciones horarias de contaminantes clave.  
 
 ✔ **Análisis estacional del comportamiento de contaminantes** 
